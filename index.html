@@ -84,7 +84,13 @@
   .sib-form-message-panel--active{display:block}
   .sib-msg--ok{background:var(--mint);color:#0F4A37;border:1px solid #9FCDB9}
   .sib-msg--error{background:#FBE9E4;color:#7A2A18;border:1px solid #E8B6A8}
-  .sib-form .btn[disabled]{opacity:.6;cursor:wait}
+  .sib-form .btn[disabled]{opacity:.7;cursor:wait}
+  .sib-form .btn{display:flex;align-items:center;justify-content:center;gap:10px}
+  .sib-spinner{width:20px;height:20px;flex:none}
+  .sib-hide-loader-icon{display:none}
+  @media (prefers-reduced-motion:no-preference){.sib-spinner{animation:sibspin .8s linear infinite}}
+  @keyframes sibspin{to{transform:rotate(360deg)}}
+  @media (max-width:899px){body{padding-bottom:84px}}
 
   /* ===== Contenu ===== */
   h3{font-family:var(--display);font-weight:700;font-size:23px;letter-spacing:-.01em;margin:0 0 14px}
@@ -191,7 +197,7 @@
                   </div>
                 </div>
                 <div class="sib-form-block">
-                  <button class="btn sib-form-block__button" form="sib-form" type="submit">Recevoir le guide gratuit</button>
+                  <button class="btn sib-form-block__button sib-form-block__button-with-loader" form="sib-form" type="submit"><svg class="sib-spinner sib-hide-loader-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="3" stroke-dasharray="42 15"/></svg>Recevoir le guide gratuit</button>
                 </div>
                 <input type="text" name="email_address_check" value="" class="input--hidden" tabindex="-1" autocomplete="off" aria-hidden="true">
                 <input type="hidden" name="locale" value="fr">
