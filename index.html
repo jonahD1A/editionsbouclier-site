@@ -72,6 +72,20 @@
   .consent{font-size:12.5px;color:var(--ink-soft);margin:12px 0 0;line-height:1.5}
   .preview-note{font-family:var(--display);font-size:12.5px;background:#FFF7DD;border:1px dashed #A87817;color:#6B4C0E;border-radius:8px;padding:7px 10px;margin-bottom:14px}
 
+  /* ===== Formulaire Brevo ===== */
+  .sib-form .entry__label{display:block;font-family:var(--display);font-weight:500;font-size:14px;margin-bottom:5px}
+  .sib-form .input{width:100%;font-family:var(--display);font-size:17px;padding:13px 14px;border:1.5px solid var(--line);border-radius:9px;background:#fff;color:var(--ink)}
+  .sib-form .input:focus{outline:none;border-color:var(--green);box-shadow:0 0 0 3px rgba(43,179,132,.25)}
+  .sib-form .entry__error{display:block;color:#B4462F;font-family:var(--display);font-size:13px;margin-top:4px}
+  .sib-form .entry__error:empty{display:none}
+  .sib-captcha{margin:4px 0 14px}
+  .input--hidden{display:none!important}
+  .sib-form-message-panel{display:none;border-radius:10px;padding:14px 16px;margin-bottom:14px;font-family:var(--display);font-size:15px;line-height:1.5}
+  .sib-form-message-panel--active{display:block}
+  .sib-msg--ok{background:var(--mint);color:#0F4A37;border:1px solid #9FCDB9}
+  .sib-msg--error{background:#FBE9E4;color:#7A2A18;border:1px solid #E8B6A8}
+  .sib-form .btn[disabled]{opacity:.6;cursor:wait}
+
   /* ===== Contenu ===== */
   h3{font-family:var(--display);font-weight:700;font-size:23px;letter-spacing:-.01em;margin:0 0 14px}
   .contents{list-style:none;margin:0;padding:0}
@@ -138,28 +152,54 @@
     <section class="form-col" id="inscription">
       <div class="card">
         <h2>Recevez le guide maintenant</h2>
-        <p class="sub">Indiquez votre e-mail : le PDF arrive dans votre boîte en moins d’une minute.</p>
+        <p class="sub">Indiquez votre e-mail : vous recevez le lien du guide en moins d’une minute.</p>
 
-        <!-- =========================================================
-             EMPLACEMENT DU FORMULAIRE BREVO
-             Remplacer le bloc <div class="preview-note"> et le <form id="brevo-placeholder">
-             par le code d'intégration du formulaire Brevo (champs PRÉNOM + EMAIL).
-             ========================================================= -->
-        <div id="brevo-slot">
-          <div class="preview-note">Aperçu : le formulaire Brevo sera branché ici.</div>
-          <form id="brevo-placeholder" onsubmit="return false" novalidate>
-            <div class="field">
-              <label for="firstname">Prénom</label>
-              <input id="firstname" name="FIRSTNAME" type="text" autocomplete="given-name">
+        <!-- ================= FORMULAIRE BREVO (Mini-Bouclier - Guide gratuit) ================= -->
+        <div id="brevo-slot" class="sib-form">
+          <div id="sib-form-container" class="sib-form-container">
+            <div id="error-message" class="sib-form-message-panel sib-msg sib-msg--error">
+              <span class="sib-form-message-panel__inner-text">Votre inscription n'a pas pu être enregistrée. Réessayez dans un instant.</span>
             </div>
-            <div class="field">
-              <label for="email">Adresse e-mail</label>
-              <input id="email" name="EMAIL" type="email" autocomplete="email" inputmode="email" required>
+            <div id="success-message" class="sib-form-message-panel sib-msg sib-msg--ok">
+              <span class="sib-form-message-panel__inner-text"><strong>C'est presque fini !</strong> Un e-mail vient de vous être envoyé. Cliquez sur le lien qu'il contient pour recevoir votre guide (pensez à vérifier vos spams).</span>
             </div>
-            <button class="btn" type="submit">Recevoir le guide gratuit</button>
-          </form>
+            <div id="sib-container">
+              <form id="sib-form" method="POST" data-type="subscription"
+                action="https://4e521094.sibforms.com/serve/MUIFAE_qBqot6UMFS5ssWFodFsA2_1S55bDUPfxaJmBV1GV01e9PBurYRwwmvmgicu_lhghpDAtpEUZGm2iAOvNo0iPN6OuFEOMYeiG_DPBZgvARAvbEZfYZPs10rBjAE1DfRgQgpTB6HFMq7ytkFJMLD1n2rrpa1BNaWUVEm8y1KjsKwDY2aAZN_6s0h7KNMi2SZSwuwH_eYOkD6g==">
+                <div class="sib-input sib-form-block field">
+                  <div class="form__entry entry_block">
+                    <label class="entry__label" for="PRENOM">Prénom</label>
+                    <div class="entry__field">
+                      <input class="input" maxlength="200" type="text" id="PRENOM" name="PRENOM" autocomplete="given-name" data-required="true" required>
+                    </div>
+                    <label class="entry__error entry__error--primary"></label>
+                  </div>
+                </div>
+                <div class="sib-input sib-form-block field">
+                  <div class="form__entry entry_block">
+                    <label class="entry__label" for="EMAIL">Adresse e-mail</label>
+                    <div class="entry__field">
+                      <input class="input" type="email" id="EMAIL" name="EMAIL" autocomplete="email" inputmode="email" data-required="true" required>
+                    </div>
+                    <label class="entry__error entry__error--primary"></label>
+                  </div>
+                </div>
+                <div class="sib-captcha sib-form-block">
+                  <div class="form__entry entry_block">
+                    <div class="g-recaptcha sib-visible-recaptcha" id="sib-captcha" data-sitekey="6LeqsugtAAAAACJEiC0te0rUFuC3uFRpp2NZWyzc" data-callback="handleCaptchaResponse"></div>
+                    <label class="entry__error entry__error--primary"></label>
+                  </div>
+                </div>
+                <div class="sib-form-block">
+                  <button class="btn sib-form-block__button" form="sib-form" type="submit">Recevoir le guide gratuit</button>
+                </div>
+                <input type="text" name="email_address_check" value="" class="input--hidden" tabindex="-1" autocomplete="off" aria-hidden="true">
+                <input type="hidden" name="locale" value="fr">
+              </form>
+            </div>
+          </div>
         </div>
-        <!-- ===================== FIN EMPLACEMENT ===================== -->
+        <!-- ================= FIN FORMULAIRE BREVO ================= -->
 
         <ul class="reassure">
           <li><svg><use href="#check"/></svg>100 % gratuit</li>
@@ -237,11 +277,26 @@ document.getElementById('cookieLink').onclick = function(e){ e.preventDefault();
 var slot = document.getElementById('brevo-slot');
 new MutationObserver(function(){
   var ok = document.getElementById('success-message');
-  if (ok && ok.offsetParent !== null && !slot.dataset.leadSent){
+  if (ok && (ok.classList.contains('sib-form-message-panel--active') || ok.offsetParent !== null) && !slot.dataset.leadSent){
     slot.dataset.leadSent = '1';
     if (window.fbq) fbq('track', 'Lead');
   }
 }).observe(slot, {subtree:true, childList:true, attributes:true});
 </script>
+<script>
+function handleCaptchaResponse(){ document.getElementById('sib-captcha').dispatchEvent(new Event('captchaChange')); }
+window.REQUIRED_CODE_ERROR_MESSAGE = 'Veuillez choisir un code pays';
+window.LOCALE = 'fr';
+window.EMAIL_INVALID_MESSAGE = window.SMS_INVALID_MESSAGE = "Les informations saisies ne sont pas valides. Vérifiez votre adresse e-mail et réessayez.";
+window.REQUIRED_ERROR_MESSAGE = "Ce champ est obligatoire.";
+window.GENERIC_INVALID_MESSAGE = "Les informations saisies ne sont pas valides. Vérifiez votre adresse e-mail et réessayez.";
+window.INVALID_NUMBER = "Les informations saisies ne sont pas valides.";
+window.INVALID_DATE = "Les informations saisies ne sont pas valides.";
+window.REQUIRED_MULTISELECT_MESSAGE = "Ce champ est obligatoire.";
+window.translation = { common: { selectedList: '{quantity} liste sélectionnée', selectedLists: '{quantity} listes sélectionnées', selectedOption: '{quantity} sélectionné', selectedOptions: '{quantity} sélectionnés' } };
+var AUTOHIDE = Boolean(0);
+</script>
+<script defer src="https://sibforms.com/forms/end-form/build/main.js"></script>
+<script src="https://www.google.com/recaptcha/api.js?hl=fr" async defer></script>
 </body>
 </html>
