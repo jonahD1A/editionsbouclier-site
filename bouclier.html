@@ -133,7 +133,7 @@
         <h2>Le Bouclier Micro-Entrepreneur 2026</h2>
         <div class="price"><b>27 €</b><span>guide PDF · paiement unique</span></div>
         <p class="tax">Prix final. TVA non applicable, art. 293 B du CGI.</p>
-        <a class="btn" id="buyBtn" href="https://jonahjconsulting.gumroad.com/l/Le_Bouclier_Micro-Entrepreneur">Je télécharge le guide</a>
+        <a class="btn" id="buyBtn" href="https://buy.stripe.com/5kQcN581Vbrq2NldX28bS00">Je télécharge le guide</a>
         <p class="code">Vous avez un code lecteur (par exemple celui du Mini-Bouclier) ? Saisissez-le sur la page de paiement, dans « Ajouter un code promotionnel ».</p>
         <ul class="reassure">
           <li><svg><use href="#check"/></svg>Paiement sécurisé par Stripe</li>
@@ -231,6 +231,16 @@ if (c === 'yes') loadPixel(); else if (c !== 'no') banner.style.display = 'flex'
 document.getElementById('cookieYes').onclick = function(){ setConsent('yes'); banner.style.display='none'; loadPixel(); };
 document.getElementById('cookieNo').onclick  = function(){ setConsent('no');  banner.style.display='none'; };
 document.getElementById('cookieLink').onclick = function(e){ e.preventDefault(); banner.style.display='flex'; };
+/* Code lecteur transmis par l'URL (?code=SHIELD20) : pré-rempli sur la page de paiement */
+(function(){
+  var m = location.search.match(/[?&]code=([A-Za-z0-9_-]{3,30})/);
+  if (!m) return;
+  var code = m[1].toUpperCase();
+  var btn = document.getElementById('buyBtn');
+  btn.href = btn.href + '?prefilled_promo_code=' + encodeURIComponent(code);
+  var box = document.querySelector('.code');
+  if (box) box.innerHTML = 'Votre code lecteur <strong>' + code.replace(/[^A-Z0-9_-]/g,'') + '</strong> sera appliqué automatiquement sur la page de paiement.';
+})();
 document.getElementById('buyBtn').addEventListener('click', function(){
   if (window.fbq) fbq('track', 'InitiateCheckout', {content_name:'Bouclier 2026', value:27, currency:'EUR'});
 });
