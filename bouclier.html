@@ -66,6 +66,11 @@
   .tick svg{width:15px;height:15px}
   .contents b{font-family:var(--display);font-weight:600;display:block;font-size:16.5px;line-height:1.35;margin-bottom:2px}
   .contents span{color:var(--ink-soft);font-size:16px}
+  .preview{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:0 0 30px;padding:0;list-style:none}
+  .preview a{display:block;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#fff;box-shadow:0 10px 24px -18px rgba(19,35,63,.6);text-decoration:none}
+  .preview img{width:100%;aspect-ratio:720/967;object-fit:cover;object-position:top}
+  .preview span{display:block;font-family:var(--display);font-size:13px;line-height:1.35;color:var(--ink-soft);padding:8px 10px;border-top:1px solid var(--line)}
+  .preview-note{font-family:var(--display);font-size:13px;color:var(--ink-soft);margin:-18px 0 30px}
   .who{margin:0 0 30px;padding-left:20px}
   .who li{margin-bottom:6px}
   .faq details{border-top:1px solid var(--line);padding:12px 0}
@@ -162,6 +167,15 @@
         <li><div class="tick">07</div><div><b>Erreur, retard, fraude</b><span>Le droit à l’erreur, le barème des majorations et ce que vous risquez vraiment.</span></div></li>
         <li><div class="tick"><svg><use href="#check"/></svg></div><div><b>En bonus</b><span>Une checklist imprimable classée par fréquence (une fois, chaque facture, chaque mois, chaque trimestre, chaque année), un glossaire et les 19 sources officielles utilisées.</span></div></li>
       </ul>
+
+      <h3>Un aperçu du guide</h3>
+      <ul class="preview">
+        <li><a href="/img/apercu-p6.jpg" target="_blank" rel="noopener"><img src="/img/apercu-p6.jpg" alt="Page « L’essentiel sur une page » : plafonds, taux de cotisations et seuils de TVA 2026" width="720" height="967" loading="lazy"><span>L’essentiel 2026 sur une page</span></a></li>
+        <li><a href="/img/apercu-p17.jpg" target="_blank" rel="noopener"><img src="/img/apercu-p17.jpg" alt="Modèle de facture annoté de micro-entrepreneur, avec les mentions obligatoires numérotées" width="720" height="967" loading="lazy"><span>Le modèle de facture annoté</span></a></li>
+        <li><a href="/img/apercu-p29.jpg" target="_blank" rel="noopener"><img src="/img/apercu-p29.jpg" alt="Fiche « Les 5 zones de risque » : ce qui attire l’attention de l’administration et la parade" width="720" height="967" loading="lazy"><span>Les 5 zones de risque et la parade</span></a></li>
+        <li><a href="/img/apercu-p37.jpg" target="_blank" rel="noopener"><img src="/img/apercu-p37.jpg" alt="Checklist imprimable du Bouclier, classée par fréquence" width="720" height="967" loading="lazy"><span>La checklist imprimable</span></a></li>
+      </ul>
+      <p class="preview-note">4 pages sur 45, extraites du guide. Touchez une page pour l’agrandir.</p>
 
       <h3>Pour qui ?</h3>
       <ul class="who">
