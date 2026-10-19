@@ -179,25 +179,10 @@
                 action="https://4e521094.sibforms.com/serve/MUIFAE_qBqot6UMFS5ssWFodFsA2_1S55bDUPfxaJmBV1GV01e9PBurYRwwmvmgicu_lhghpDAtpEUZGm2iAOvNo0iPN6OuFEOMYeiG_DPBZgvARAvbEZfYZPs10rBjAE1DfRgQgpTB6HFMq7ytkFJMLD1n2rrpa1BNaWUVEm8y1KjsKwDY2aAZN_6s0h7KNMi2SZSwuwH_eYOkD6g==">
                 <div class="sib-input sib-form-block field">
                   <div class="form__entry entry_block">
-                    <label class="entry__label" for="PRENOM">Prénom</label>
-                    <div class="entry__field">
-                      <input class="input" maxlength="200" type="text" id="PRENOM" name="PRENOM" autocomplete="given-name" data-required="true" required>
-                    </div>
-                    <label class="entry__error entry__error--primary"></label>
-                  </div>
-                </div>
-                <div class="sib-input sib-form-block field">
-                  <div class="form__entry entry_block">
                     <label class="entry__label" for="EMAIL">Adresse e-mail</label>
                     <div class="entry__field">
                       <input class="input" type="email" id="EMAIL" name="EMAIL" autocomplete="email" inputmode="email" data-required="true" required>
                     </div>
-                    <label class="entry__error entry__error--primary"></label>
-                  </div>
-                </div>
-                <div class="sib-captcha sib-form-block">
-                  <div class="form__entry entry_block">
-                    <div class="g-recaptcha sib-visible-recaptcha" id="sib-captcha" data-sitekey="6LdgvOktAAAAAL9gqAU0J0uhhlW24pvbF2PzbbsB" data-callback="handleCaptchaResponse"></div>
                     <label class="entry__error entry__error--primary"></label>
                   </div>
                 </div>
@@ -301,7 +286,6 @@ new MutationObserver(function(){
 }).observe(slot, {subtree:true, childList:true, attributes:true});
 </script>
 <script>
-function handleCaptchaResponse(){ document.getElementById('sib-captcha').dispatchEvent(new Event('captchaChange')); }
 window.REQUIRED_CODE_ERROR_MESSAGE = 'Veuillez choisir un code pays';
 window.LOCALE = 'fr';
 window.EMAIL_INVALID_MESSAGE = window.SMS_INVALID_MESSAGE = "Les informations saisies ne sont pas valides. Vérifiez votre adresse e-mail et réessayez.";
@@ -314,6 +298,5 @@ window.translation = { common: { selectedList: '{quantity} liste sélectionnée'
 var AUTOHIDE = Boolean(0);
 </script>
 <script defer src="https://sibforms.com/forms/end-form/build/main.js"></script>
-<script src="https://www.google.com/recaptcha/api.js?hl=fr" async defer></script>
 </body>
 </html>
